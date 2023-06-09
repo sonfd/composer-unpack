@@ -31,7 +31,6 @@ class UnpackCommand extends BaseCommand {
     $this
       ->setName('composer_unpack:unpack')
       ->setAliases(['unpack'])
-      ->setDescription(".")
       ->setDefinition([
         new InputArgument('packages', InputArgument::IS_ARRAY | InputArgument::REQUIRED, "Installed packages to unpack.")
     ]);
@@ -78,6 +77,8 @@ class UnpackCommand extends BaseCommand {
   /**
    * Unpack a package's requirements.
    *
+   * @todo convert this to its own 'Operation' class.
+   *
    * @param CompletePackageInterface $package
    *   The package to unpack.
    * @param string $reqType
@@ -90,7 +91,7 @@ class UnpackCommand extends BaseCommand {
       $reqVersion = $requirement->getPrettyConstraint();
 
       $reqPackage = $this->getPackageByName($reqName);
-      if ($this->shouldAutoUnpack($reqPackage)) {
+      if ($this->shouldRecursivelyUnpack($reqPackage)) {
         // If the package is of a package type that should be auto-unpacked,
         // recursively unpack it rather than merging it.
         $this->doUnpackPackage($reqPackage);
@@ -102,6 +103,8 @@ class UnpackCommand extends BaseCommand {
 
   /**
    * Remove a requirement from composer.json.
+   *
+   * @todo convert this to its own 'Operation' class.
    *
    * @param Composer\Package\CompletePackageInterface|null $package
    *   The package to remove, or null.
@@ -157,7 +160,7 @@ class UnpackCommand extends BaseCommand {
    * @return bool
    *   TRUE if the package should be auto-unpacked, otherwise FALSE.
    */
-  protected function shouldAutoUnpack(?CompletePackageInterface $package): bool {
+  protected function shouldRecursivelyUnpack(?CompletePackageInterface $package): bool {
     if ($package instanceof CompletePackageInterface) {
       return in_array($package->getType(), $this->autoRecurseTypes);
     }
