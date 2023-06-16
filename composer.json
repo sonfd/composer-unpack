@@ -10,5 +10,8 @@
     "require": {
       "php": ">=8.1",
       "composer-plugin-api": "^2.0"
+    },
+    "extra": {
+      "class": "sonfd\\composer_unpack\\Plugin"
     }
 }
