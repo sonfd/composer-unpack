@@ -1,20 +1,20 @@
 <?php
 
-namespace sonfd\composer_unpack;
+namespace sonfd\composer_unpack\Composer;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Installer\PackageEvent;
 use Composer\Installer\PackageEvents;
 use Composer\IO\IOInterface;
-use Composer\Plugin\Capability\CommandProvider;
+use Composer\Plugin\Capability\CommandProvider as CommandProviderInterface;
 use Composer\Plugin\Capable;
 use Composer\Plugin\CommandEvent;
 use Composer\Plugin\PluginEvents;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
-use sonfd\composer_unpack\CommandProvider as UnpackCommandProvider;
+use sonfd\composer_unpack\Composer\CommandProvider as UnpackCommandProvider;
 
 /**
  * Composer plugin for handling drupal scaffold.
@@ -69,7 +69,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface, Capable {
    * {@inheritdoc}
    */
   public function getCapabilities() {
-    return [CommandProvider::class => UnpackCommandProvider::class];
+    return [CommandProviderInterface::class => UnpackCommandProvider::class];
   }
 
   /**

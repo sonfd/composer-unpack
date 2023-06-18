@@ -5,6 +5,8 @@ namespace sonfd\composer_unpack;
 use Composer\Package\CompletePackageInterface;
 use Composer\Repository\RepositoryManager;
 use sonfd\composer_unpack\Operations\ComposerRequireOperation;
+use sonfd\composer_unpack\Operations\OperationManager;
+use sonfd\composer_unpack\Operations\OperationManagerInterface;
 
 /**
  * An Unpacker class to unpack a composer package.

@@ -12,6 +12,6 @@
       "composer-plugin-api": "^2.0"
     },
     "extra": {
-      "class": "sonfd\\composer_unpack\\Plugin"
+      "class": "sonfd\\composer_unpack\\Composer\\Plugin"
     }
 }

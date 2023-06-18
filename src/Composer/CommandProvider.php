@@ -1,6 +1,6 @@
 <?php
 
-namespace sonfd\composer_unpack;
+namespace sonfd\composer_unpack\Composer;
 
 use Composer\Plugin\Capability\CommandProvider as CommandProviderCapability;
 use sonfd\composer_unpack\Commands\UnpackCommand;

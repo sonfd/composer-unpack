@@ -1,6 +1,6 @@
 <?php
 
-namespace sonfd\composer_unpack;
+namespace sonfd\composer_unpack\Operations;
 
 use sonfd\composer_unpack\Operations\OperationInterface;
 
