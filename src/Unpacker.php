@@ -37,9 +37,9 @@ class Unpacker implements UnpackerInterface {
    * {@inheritdoc}
    */
   public function unpack(CompletePackageInterface $package): bool {
-    array_walk($packages, fn(CompletePackageInterface $package) =>
-      $this->operationManager
-        ->addOperations($this->generateRequireOps($package)));
+    $operations = $this->generateRequireOps($package);
+    array_walk($operations, fn($operation) =>
+      $this->operationManager->addOperation($operation));
 
     return $this->operationManager->executeOperations();
   }
