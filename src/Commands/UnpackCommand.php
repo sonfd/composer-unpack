@@ -23,16 +23,6 @@ class UnpackCommand extends BaseCommand {
   /**
    * {@inheritdoc}
    */
-  public function __construct() {
-    parent::__construct();
-    $this->composerFile = ComposerFactory::getComposerFile();
-    $this->repositoryManager = $this->requireComposer()->getRepositoryManager();
-    $this->unpacker = new Unpacker($this->composerFile, $this->repositoryManager);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   protected function configure() {
     $this
       ->setName('composer_unpack:unpack')
@@ -46,6 +36,10 @@ class UnpackCommand extends BaseCommand {
    * {@inheritdoc}
    */
   protected function execute(InputInterface $input, OutputInterface $output): int {
+    $this->composerFile = ComposerFactory::getComposerFile();
+    $this->repositoryManager = $this->requireComposer()->getRepositoryManager();
+    $this->unpacker = new Unpacker($this->composerFile, $this->repositoryManager);
+
     $packageNames = $input->getArgument('packages');
     $packages = array_map(fn(string $packageName) =>
       $this->repositoryManager
