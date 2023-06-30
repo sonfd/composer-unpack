@@ -21,15 +21,6 @@ interface OperationManagerInterface {
   public function addOperation(OperationInterface $operation): bool;
 
   /**
-   * Bulk add operations.
-   *
-   * @param sonfd\composer_unpack\Operations\OperationInterface[] $operations
-   *
-   * @return void
-   */
-  public function addOperations(array $operations): void;
-
-  /**
    * Check if an operation exists with a given id.
    *
    * @param string $id

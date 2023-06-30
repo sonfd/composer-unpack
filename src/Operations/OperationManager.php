@@ -29,13 +29,6 @@ class OperationManager implements OperationManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function addOperations(array $operations): void {
-    array_walk($operations, [$this, 'addOperation']);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function removeOperation(string $id): bool {
     if ($this->hasOperation($id)) {
       unset($this->operations[$id]);
